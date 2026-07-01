@@ -12,6 +12,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import BlogDetail from "./pages/BlogDetail";
 import EditBlog from "./pages/EditBlog";
 import GuestRoute from "./components/GuestRoute";
+import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -39,7 +41,6 @@ function App() {
             </GuestRoute>
           }
         />
-
         <Route
           path="/register"
           element={
@@ -57,7 +58,17 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/edit-blog/:id"
+          element={
+            <ProtectedRoute>
+              <EditBlog />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

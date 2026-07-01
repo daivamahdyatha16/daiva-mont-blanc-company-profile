@@ -149,7 +149,7 @@ const EditBlog = () => {
               src={formik.values.image}
               onError={(e) => {
                 e.currentTarget.src =
-                  "/montblanc-full-logo-text.webp";
+                  "/placeholder.webp";
               }}
               className="
                 w-full

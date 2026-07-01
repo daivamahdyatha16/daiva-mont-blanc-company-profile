@@ -1,4 +1,21 @@
+import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
+
 const Home = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <main className="bg-black text-white">
       <section
@@ -7,6 +24,7 @@ const Home = () => {
           h-screen
           bg-cover
           bg-center
+          animate-fade
         "
         style={{
           backgroundImage:
@@ -22,31 +40,40 @@ const Home = () => {
             INTERIOR DESIGN & BUILD
           </p>
 
-          <h1 className="mb-6
-  text-center
-  text-5xl
-  font-bold
-  md:text-7xl
-  lg:text-8xl
-">
+          <h1
+            className="mb-6
+    text-center
+    text-5xl
+    font-bold
+    md:text-7xl
+    lg:text-8xl
+    animate-pulse
+"
+          >
             MONT BLANC
           </h1>
 
-          <p className="mb-10
+          <p
+            className="mb-10
   max-w-2xl
   text-center
   text-base
   md:text-lg
   text-gray-300
-">
+"
+          >
             Transforming spaces into timeless experiences through premium
             interior design, architecture, and custom furniture craftsmanship.
           </p>
 
-          <div className="flex
-  flex-col
-  md:flex-row
-  gap-5">
+          <div
+            className="flex
+    flex-col
+    md:flex-row
+    gap-5
+    animate-fade
+"
+          >
             <button className="rounded bg-yellow-700 px-8 py-4">
               Explore Services
             </button>
@@ -59,13 +86,15 @@ const Home = () => {
       </section>
 
       <section className="bg-zinc-950 py-16">
-        <div className="max-w-7xl
+        <div
+          className="max-w-7xl
   mx-auto
   grid
   grid-cols-2
   md:grid-cols-4
   gap-8
-  text-center">
+  text-center"
+        >
           <div>
             <h2 className="text-5xl font-bold text-[#B88A2E]">5+</h2>
             <p>Years Experience</p>
@@ -89,10 +118,12 @@ const Home = () => {
       </section>
 
       <section className="mx-auto max-w-7xl py-24">
-        <div className="grid
+        <div
+          className="grid
   md:grid-cols-2
   gap-20
-  px-6">
+  px-6"
+        >
           <div>
             <img
               src="https://images.unsplash.com/photo-1484154218962-a197022b5858"
@@ -117,7 +148,8 @@ const Home = () => {
       <section className="bg-zinc-950 py-24">
         <h2 className="mb-20 text-center text-5xl font-bold">Our Services</h2>
 
-        <div className="mx-auto
+        <div
+          className="mx-auto
   grid
   max-w-7xl
   grid-cols-1
@@ -125,7 +157,8 @@ const Home = () => {
   lg:grid-cols-3
   gap-8
   px-6
-">
+"
+        >
           <div
             className="
 border border-zinc-700
@@ -181,7 +214,8 @@ duration-300
           Featured Projects
         </h2>
 
-        <div className="mx-auto
+        <div
+          className="mx-auto
   grid
   max-w-7xl
   grid-cols-1
@@ -189,7 +223,8 @@ duration-300
   lg:grid-cols-3
   gap-4
   px-6
-">
+"
+        >
           {/* PROJECT 1 */}
           <div className="group relative overflow-hidden rounded-lg">
             <img
