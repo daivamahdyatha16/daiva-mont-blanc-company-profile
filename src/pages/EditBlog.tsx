@@ -11,17 +11,21 @@ const EditBlog = () => {
 
   const { blogs, editBlog } = useBlog();
 
-  const blog = blogs[Number(id)];
+  const blog = blogs.find(
+    (blog) => blog.objectId === id
+  );
 
   if (!blog) {
     return (
-      <div className="min-h-screen bg-black text-white flex justify-center items-center">
+      <div className="min-h-screen bg-[#0F1921] text-white flex justify-center items-center">
         Article not found
       </div>
     );
   }
 
   const formik = useFormik({
+    enableReinitialize: true,
+
     initialValues: {
       title: blog.title,
       image: blog.image,
@@ -45,25 +49,30 @@ const EditBlog = () => {
         .required("Content is required"),
     }),
 
-    onSubmit: (values) => {
-      editBlog(Number(id), {
-        ...blog,
-        title: values.title,
-        image: values.image,
-        content: values.content,
-      });
+    onSubmit: async (values) => {
+      try {
+        await editBlog(id!, {
+          ...blog,
+          title: values.title,
+          image: values.image,
+          content: values.content,
+        });
 
-      navigate("/blogs");
+        alert("Article updated successfully");
+
+        navigate("/blogs");
+      } catch (err) {
+        console.error(err);
+        alert("Failed to update article");
+      }
     },
   });
 
   return (
-    <div className="min-h-screen bg-black text-white pt-32 px-6">
+    <div className="min-h-screen bg-[#0F1921] text-white pt-32 px-6">
       <div className="max-w-4xl mx-auto">
 
-        {/* HEADER */}
-
-        <p className="text-[#B88A2E] tracking-[6px] mb-3">
+        <p className="text-[#D1C19E] tracking-[6px] mb-3">
           EDIT ARTICLE
         </p>
 
@@ -74,16 +83,14 @@ const EditBlog = () => {
         <form
           onSubmit={formik.handleSubmit}
           className="
-            bg-zinc-950
+            bg-[#16222B]
             border
-            border-zinc-800
+            border-[#2A3842]
             rounded-2xl
             p-8
             space-y-6
           "
         >
-          {/* TITLE */}
-
           <div>
             <label className="block mb-3">
               Article Title
@@ -111,8 +118,6 @@ const EditBlog = () => {
                 </p>
               )}
           </div>
-
-          {/* IMAGE */}
 
           <div>
             <label className="block mb-3">
@@ -142,8 +147,6 @@ const EditBlog = () => {
               )}
           </div>
 
-          {/* PREVIEW */}
-
           {formik.values.image && (
             <img
               src={formik.values.image}
@@ -159,8 +162,6 @@ const EditBlog = () => {
               "
             />
           )}
-
-          {/* CONTENT */}
 
           <div>
             <label className="block mb-3">
@@ -194,7 +195,7 @@ const EditBlog = () => {
           <button
             type="submit"
             className="
-              bg-[#B88A2E]
+              bg-[#D1C19E]
               text-black
               font-semibold
               px-8
@@ -207,7 +208,6 @@ const EditBlog = () => {
             Save Changes
           </button>
         </form>
-
       </div>
     </div>
   );

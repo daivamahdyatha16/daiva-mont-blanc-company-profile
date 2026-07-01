@@ -27,11 +27,8 @@ const Login = () => {
         .required("Password is required"),
     }),
 
-    onSubmit: (values) => {
-      const success = login(
-        values.email,
-        values.password
-      );
+    onSubmit: async (values) => {
+      const success = await login(values.email, values.password);
 
       if (success) {
         navigate("/");
@@ -45,7 +42,7 @@ const Login = () => {
     <div
       className="
         min-h-screen
-        bg-black
+        bg-[#0F1921]
         flex
         items-center
         justify-center
@@ -58,7 +55,7 @@ const Login = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/80"></div>
+      <div className="absolute inset-0 bg-[#0F1921]/80"></div>
 
       <form
         onSubmit={formik.handleSubmit}
@@ -70,7 +67,7 @@ const Login = () => {
           p-10
           rounded-3xl
           backdrop-blur-md
-          bg-black/50
+          bg-[#0F1921]/50
           border
           border-yellow-700/30
           shadow-2xl
@@ -79,15 +76,13 @@ const Login = () => {
         {/* HEADER */}
 
         <div className="text-center mb-8">
-          <p className="text-[#B88A2E] tracking-[8px] text-sm">
-            WELCOME BACK
-          </p>
+          <p className="text-[#D1C19E] tracking-[8px] text-sm">WELCOME BACK</p>
 
           <h1 className="text-6xl font-bold text-white mt-4 font-serif">
             Login
           </h1>
 
-          <div className="w-16 h-[2px] bg-[#B88A2E] mx-auto mt-4"></div>
+          <div className="w-16 h-[2px] bg-[#D1C19E] mx-auto mt-4"></div>
         </div>
 
         {/* EMAIL */}
@@ -109,16 +104,13 @@ const Login = () => {
               rounded-xl
               text-white
               focus:outline-none
-              focus:border-[#B88A2E]
+              focus:border-[#D1C19E]
             "
           />
 
-          {formik.touched.email &&
-            formik.errors.email && (
-              <p className="text-red-500 text-sm mt-2">
-                {formik.errors.email}
-              </p>
-            )}
+          {formik.touched.email && formik.errors.email && (
+            <p className="text-red-500 text-sm mt-2">{formik.errors.email}</p>
+          )}
         </div>
 
         {/* PASSWORD */}
@@ -140,20 +132,19 @@ const Login = () => {
               rounded-xl
               text-white
               focus:outline-none
-              focus:border-[#B88A2E]
+              focus:border-[#D1C19E]
             "
           />
 
-          {formik.touched.password &&
-            formik.errors.password && (
-              <p className="text-red-500 text-sm mt-2">
-                {formik.errors.password}
-              </p>
-            )}
+          {formik.touched.password && formik.errors.password && (
+            <p className="text-red-500 text-sm mt-2">
+              {formik.errors.password}
+            </p>
+          )}
         </div>
 
         <div className="text-right mb-6">
-          <span className="text-[#B88A2E] text-sm cursor-pointer">
+          <span className="text-[#D1C19E] text-sm cursor-pointer">
             Forgot password?
           </span>
         </div>
@@ -180,14 +171,12 @@ const Login = () => {
           Login
         </button>
 
-        <p className="text-center mt-8 text-zinc-400">
+        <p className="text-center mt-8 text-[#A7ADB3]">
           Don't have account?{" "}
           <span
-            onClick={() =>
-              navigate("/register")
-            }
+            onClick={() => navigate("/register")}
             className="
-              text-[#B88A2E]
+              text-[#D1C19E]
               cursor-pointer
             "
           >

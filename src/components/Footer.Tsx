@@ -3,7 +3,7 @@ import { FaInstagram, FaThreads } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-black border-t border-zinc-800 text-white">
+    <footer className="bg-[#0F1921] border-t border-[#2A3842] text-white">
       <div
         className="
           max-w-7xl
@@ -25,20 +25,20 @@ const Footer = () => {
       text-3xl
       font-bold
       tracking-[8px]
-      text-[#B88A2E]
+      text-[#D1C19E]
       mb-4
     "
             >
               MONT BLANC
             </h2>
 
-            <p className="text-zinc-400 leading-8 max-w-sm">
+            <p className="text-[#A7ADB3] leading-8 max-w-sm">
               Transforming spaces into timeless experiences through premium
               interior design, architecture, and luxury craftsmanship.
             </p>
           </div>
 
-          <p className="text-zinc-400 leading-8 max-w-sm">
+          <p className="text-[#A7ADB3] leading-8 max-w-sm">
             Transforming spaces into timeless experiences through premium
             interior design, architecture, and luxury craftsmanship.
           </p>
@@ -54,8 +54,8 @@ const Footer = () => {
               to="/"
               className="
                 block
-                text-zinc-400
-                hover:text-[#B88A2E]
+                text-[#A7ADB3]
+                hover:text-[#D1C19E]
                 transition
               "
             >
@@ -66,8 +66,8 @@ const Footer = () => {
               to="/about"
               className="
                 block
-                text-zinc-400
-                hover:text-[#B88A2E]
+                text-[#A7ADB3]
+                hover:text-[#D1C19E]
                 transition
               "
             >
@@ -78,8 +78,8 @@ const Footer = () => {
               to="/projects"
               className="
                 block
-                text-zinc-400
-                hover:text-[#B88A2E]
+                text-[#A7ADB3]
+                hover:text-[#D1C19E]
                 transition
               "
             >
@@ -90,8 +90,8 @@ const Footer = () => {
               to="/services"
               className="
                 block
-                text-zinc-400
-                hover:text-[#B88A2E]
+                text-[#A7ADB3]
+                hover:text-[#D1C19E]
                 transition
               "
             >
@@ -102,8 +102,8 @@ const Footer = () => {
               to="/teams"
               className="
                 block
-                text-zinc-400
-                hover:text-[#B88A2E]
+                text-[#A7ADB3]
+                hover:text-[#D1C19E]
                 transition
               "
             >
@@ -114,8 +114,8 @@ const Footer = () => {
               to="/blogs"
               className="
                 block
-                text-zinc-400
-                hover:text-[#B88A2E]
+                text-[#A7ADB3]
+                hover:text-[#D1C19E]
                 transition
               "
             >
@@ -129,14 +129,14 @@ const Footer = () => {
         <div>
           <h3 className="text-xl font-semibold mb-6">Contact</h3>
 
-          <div className="space-y-4 text-zinc-400">
+          <div className="space-y-4 text-[#A7ADB3]">
             <p>Semarang, Indonesia</p>
 
             <a
               href="mailto:hello@montblanc.com"
               className="
                 block
-                hover:text-[#B88A2E]
+                hover:text-[#D1C19E]
                 transition
               "
             >
@@ -147,7 +147,7 @@ const Footer = () => {
               href="tel:+6285106413100"
               className="
                 block
-                hover:text-[#B88A2E]
+                hover:text-[#D1C19E]
                 transition
               "
             >
@@ -164,8 +164,8 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                  text-zinc-400
-                  hover:text-[#B88A2E]
+                  text-[#A7ADB3]
+                  hover:text-[#D1C19E]
                   hover:scale-110
                   transition
                   text-3xl
@@ -179,8 +179,8 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                  text-zinc-400
-                  hover:text-[#B88A2E]
+                  text-[#A7ADB3]
+                  hover:text-[#D1C19E]
                   hover:scale-110
                   transition
                   text-3xl
@@ -198,7 +198,7 @@ const Footer = () => {
       <div
         className="
           border-t
-          border-zinc-800
+          border-[#2A3842]
           py-6
           text-center
           text-zinc-500

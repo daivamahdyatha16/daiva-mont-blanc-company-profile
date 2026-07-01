@@ -9,7 +9,7 @@ const Loading = () => {
         flex-col
         items-center
         justify-center
-        bg-black
+        bg-[#0F1921]
       "
     >
       <img
@@ -25,7 +25,7 @@ const Loading = () => {
       <p
         className="
           mt-8
-          text-[#B88A2E]
+          text-[#D1C19E]
           tracking-[8px]
           text-sm
         "

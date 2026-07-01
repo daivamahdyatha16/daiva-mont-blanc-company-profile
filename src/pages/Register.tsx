@@ -33,10 +33,18 @@ const Register = () => {
         .required("Password is required"),
     }),
 
-    onSubmit: (values) => {
-      register(values);
+    onSubmit: async (values) => {
+      const success = await register(
+        values.name,
+        values.email,
+        values.password,
+      );
 
-      navigate("/login");
+      if (success) {
+        navigate("/login");
+      } else {
+        alert("Register failed");
+      }
     },
   });
 
@@ -44,7 +52,7 @@ const Register = () => {
     <div
       className="
         min-h-screen
-        bg-black
+        bg-[#0F1921]
         flex
         items-center
         justify-center
@@ -57,7 +65,7 @@ const Register = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/80"></div>
+      <div className="absolute inset-0 bg-[#0F1921]/80"></div>
 
       <form
         onSubmit={formik.handleSubmit}
@@ -69,16 +77,16 @@ const Register = () => {
           p-10
           rounded-3xl
           backdrop-blur-md
-          bg-black/50
+          bg-[#0F1921]/50
           border
-          border-[#B88A2E]/30
+          border-[#D1C19E]/30
           shadow-2xl
         "
       >
         {/* HEADER */}
 
         <div className="text-center mb-8">
-          <p className="text-[#B88A2E] tracking-[8px] text-sm">
+          <p className="text-[#D1C19E] tracking-[8px] text-sm">
             JOIN MONT BLANC
           </p>
 
@@ -86,7 +94,7 @@ const Register = () => {
             Register
           </h1>
 
-          <div className="w-16 h-[2px] bg-[#B88A2E] mx-auto mt-4"></div>
+          <div className="w-16 h-[2px] bg-[#D1C19E] mx-auto mt-4"></div>
         </div>
 
         {/* NAME */}
@@ -108,16 +116,13 @@ const Register = () => {
               rounded-xl
               text-white
               focus:outline-none
-              focus:border-[#B88A2E]
+              focus:border-[#D1C19E]
             "
           />
 
-          {formik.touched.name &&
-            formik.errors.name && (
-              <p className="text-red-500 text-sm mt-2">
-                {formik.errors.name}
-              </p>
-            )}
+          {formik.touched.name && formik.errors.name && (
+            <p className="text-red-500 text-sm mt-2">{formik.errors.name}</p>
+          )}
         </div>
 
         {/* EMAIL */}
@@ -139,16 +144,13 @@ const Register = () => {
               rounded-xl
               text-white
               focus:outline-none
-              focus:border-[#B88A2E]
+              focus:border-[#D1C19E]
             "
           />
 
-          {formik.touched.email &&
-            formik.errors.email && (
-              <p className="text-red-500 text-sm mt-2">
-                {formik.errors.email}
-              </p>
-            )}
+          {formik.touched.email && formik.errors.email && (
+            <p className="text-red-500 text-sm mt-2">{formik.errors.email}</p>
+          )}
         </div>
 
         {/* PASSWORD */}
@@ -170,16 +172,15 @@ const Register = () => {
               rounded-xl
               text-white
               focus:outline-none
-              focus:border-[#B88A2E]
+              focus:border-[#D1C19E]
             "
           />
 
-          {formik.touched.password &&
-            formik.errors.password && (
-              <p className="text-red-500 text-sm mt-2">
-                {formik.errors.password}
-              </p>
-            )}
+          {formik.touched.password && formik.errors.password && (
+            <p className="text-red-500 text-sm mt-2">
+              {formik.errors.password}
+            </p>
+          )}
         </div>
 
         {/* BUTTON */}
@@ -188,7 +189,7 @@ const Register = () => {
           type="submit"
           className="
             w-full
-            bg-[#B88A2E]
+            bg-[#D1C19E]
             text-black
             py-4
             rounded-xl
@@ -204,14 +205,12 @@ const Register = () => {
           Create Account
         </button>
 
-        <p className="text-center mt-8 text-zinc-400">
+        <p className="text-center mt-8 text-[#A7ADB3]">
           Already have account?{" "}
           <span
-            onClick={() =>
-              navigate("/login")
-            }
+            onClick={() => navigate("/login")}
             className="
-              text-[#B88A2E]
+              text-[#D1C19E]
               cursor-pointer
             "
           >

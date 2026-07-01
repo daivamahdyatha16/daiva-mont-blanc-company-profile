@@ -41,12 +41,12 @@ const process = [
 
 const Services = () => {
   return (
-    <div className="min-h-screen bg-black text-white pt-32 pb-24 px-6">
+    <div className="min-h-screen bg-[#0F1921] text-white pt-32 pb-24 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
 
-        <p className="text-[#B88A2E] tracking-[6px] mb-4">
+        <p className="text-[#D1C19E] tracking-[6px] mb-4">
           OUR SERVICES
         </p>
 
@@ -54,7 +54,7 @@ const Services = () => {
           What We Offer
         </h1>
 
-        <p className="text-zinc-400 text-lg leading-8 max-w-4xl mb-20">
+        <p className="text-[#A7ADB3] text-lg leading-8 max-w-4xl mb-20">
           Mont Blanc provides premium interior design, renovation,
           and custom furniture solutions, delivering elegant spaces
           that combine luxury, comfort, and functionality.
@@ -69,10 +69,10 @@ const Services = () => {
               key={service.title}
               className="
                 border
-                border-zinc-800
+                border-[#2A3842]
                 rounded-2xl
                 p-8
-                hover:border-[#B88A2E]
+                hover:border-[#D1C19E]
                 hover:-translate-y-2
                 hover:shadow-[0_0_30px_rgba(184,138,46,0.15)]
                 transition
@@ -87,7 +87,7 @@ const Services = () => {
                 {service.title}
               </h2>
 
-              <p className="text-zinc-400 leading-7">
+              <p className="text-[#A7ADB3] leading-7">
                 {service.desc}
               </p>
             </div>
@@ -99,7 +99,7 @@ const Services = () => {
 
         <div className="mt-32">
 
-          <p className="text-[#B88A2E] tracking-[6px] mb-4">
+          <p className="text-[#D1C19E] tracking-[6px] mb-4">
             OUR PROCESS
           </p>
 
@@ -114,16 +114,16 @@ const Services = () => {
                 key={step}
                 className="
                   border
-                  border-zinc-800
+                  border-[#2A3842]
                   rounded-2xl
                   p-8
                   text-center
-                  hover:border-[#B88A2E]
+                  hover:border-[#D1C19E]
                   hover:-translate-y-2
                   transition
                 "
               >
-                <div className="text-4xl font-bold text-[#B88A2E] mb-4">
+                <div className="text-4xl font-bold text-[#D1C19E] mb-4">
                   0{index + 1}
                 </div>
 
@@ -144,7 +144,7 @@ const Services = () => {
             Ready To Transform Your Space?
           </h2>
 
-          <p className="text-zinc-400 mb-10">
+          <p className="text-[#A7ADB3] mb-10">
             Let's create a timeless and luxurious environment together.
           </p>
 
@@ -152,7 +152,7 @@ const Services = () => {
             href="mailto:hello@montblanc.com"
             className="
               inline-block
-              bg-[#B88A2E]
+              bg-[#D1C19E]
               text-black
               px-10
               py-4

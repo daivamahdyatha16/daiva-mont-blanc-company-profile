@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { HiOutlineMenu } from "react-icons/hi";
@@ -6,16 +6,38 @@ import { HiX } from "react-icons/hi";
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const [open, setOpen] = useState(false);
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     isActive
-      ? "text-[#B88A2E] font-semibold"
-      : "text-white hover:text-[#B88A2E] transition";
+      ? "text-[#D1C19E] font-semibold"
+      : "text-white hover:text-[#D1C19E] transition";
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-black/95 backdrop-blur border-b border-zinc-800">
+    <nav
+      className={`
+    fixed top-0 z-50 w-full
+    backdrop-blur-lg
+    transition-all duration-300
+    ${
+      scrolled
+        ? "bg-[#0F1921]/90 border-b border-[#D1C19E]/10"
+        : "bg-transparent"
+    }
+  `}
+    >
       <div className="w-full px-6">
         {/* DESKTOP HEADER */}
 
@@ -56,7 +78,7 @@ const Navbar = () => {
             className="
             hidden
             md:flex
-            gap-8
+            gap-6
             items-center
             text-sm
             font-medium
@@ -92,21 +114,24 @@ const Navbar = () => {
                   Write Article
                 </NavLink>
 
-                <span className="text-zinc-400">
+                {/* separator */}
+                <div className="h-6 w-px bg-white/20 mx-2" />
+
+                <span className="text-[#A7ADB3] whitespace-nowrap">
                   Hi, {currentUser.name.split(" ")[0]}
                 </span>
 
                 <button
                   onClick={logout}
                   className="
-                    bg-[#B88A2E]
-                    text-black
-                    px-5
-                    py-2
-                    rounded-xl
-                    hover:scale-105
-                    transition
-                  "
+      bg-[#D1C19E]
+      text-[#0F1921]
+      px-5
+      py-2
+      rounded-full
+      hover:opacity-90
+      transition
+    "
                 >
                   Logout
                 </button>
@@ -116,16 +141,16 @@ const Navbar = () => {
                 <Link
                   to="/login"
                   className="
-                    border
-                    border-[#B88A2E]
-                    text-[#B88A2E]
-                    px-5
-                    py-2
-                    rounded-full
-                    hover:bg-[#B88A2E]
-                    hover:text-black
-                    transition
-                  "
+      border
+      border-[#D1C19E]
+      text-[#D1C19E]
+      px-6
+      py-2
+      rounded-full
+      hover:bg-[#D1C19E]
+      hover:text-[#0F1921]
+      transition
+    "
                 >
                   Login
                 </Link>
@@ -133,14 +158,14 @@ const Navbar = () => {
                 <Link
                   to="/register"
                   className="
-                    bg-[#B88A2E]
-                    text-black
-                    px-5
-                    py-2
-                    rounded-full
-                    hover:scale-105
-                    transition
-                  "
+      bg-[#D1C19E]
+      text-[#0F1921]
+      px-6
+      py-2
+      rounded-full
+      hover:opacity-90
+      transition
+    "
                 >
                   Register
                 </Link>
@@ -180,7 +205,7 @@ const Navbar = () => {
               py-6
               text-center
               border-t
-              border-zinc-800
+              border-[#2A3842]
             "
           >
             <NavLink to="/" className={navClass} onClick={() => setOpen(false)}>
@@ -235,7 +260,7 @@ const Navbar = () => {
                     setOpen(false);
                   }}
                   className="
-                    bg-[#B88A2E]
+                    bg-[#D1C19E]
                     text-black
                     px-5
                     py-3
@@ -252,8 +277,8 @@ const Navbar = () => {
                   onClick={() => setOpen(false)}
                   className="
                     border
-                    border-[#B88A2E]
-                    text-[#B88A2E]
+                    border-[#D1C19E]
+                    text-[#D1C19E]
                     py-3
                     rounded-xl
                   "
@@ -265,7 +290,7 @@ const Navbar = () => {
                   to="/register"
                   onClick={() => setOpen(false)}
                   className="
-                    bg-[#B88A2E]
+                    bg-[#D1C19E]
                     text-black
                     py-3
                     rounded-xl

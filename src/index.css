@@ -28,3 +28,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
 }
+
+:root {
+  --primary: #0F1921;
+  --secondary: #16222B;
+  --accent: #D1C19E;
+  --border: #2A3842;
+  --text-muted: #A7ADB3;
+}

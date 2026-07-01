@@ -6,11 +6,13 @@ const BlogDetail = () => {
 
   const { blogs } = useBlog();
 
-  const blog = blogs[Number(id)];
+  const blog = blogs.find(
+    (blog) => blog.objectId === id
+  );
 
   if (!blog) {
     return (
-      <div className="min-h-screen bg-black text-white flex justify-center items-center">
+      <div className="min-h-screen bg-[#0F1921] text-white flex justify-center items-center">
         <h1 className="text-3xl">
           Article not found
         </h1>
@@ -19,17 +21,16 @@ const BlogDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white pt-32 px-6">
+    <div className="min-h-screen bg-[#0F1921] text-white pt-32 px-6">
       <div className="max-w-5xl mx-auto">
 
         {/* BACK */}
-
         <Link
           to="/blogs"
           className="
             inline-block
             mb-10
-            text-[#B88A2E]
+            text-[#D1C19E]
             hover:text-yellow-400
             transition
           "
@@ -38,7 +39,6 @@ const BlogDetail = () => {
         </Link>
 
         {/* IMAGE */}
-
         <img
           src={blog.image}
           onError={(e) => {
@@ -55,37 +55,39 @@ const BlogDetail = () => {
         />
 
         {/* DATE */}
-
-        <p className="
-          text-[#B88A2E]
-          tracking-[4px]
-          uppercase
-          mb-4
-        ">
-          {blog.date}
+        <p
+          className="
+            text-[#D1C19E]
+            tracking-[4px]
+            uppercase
+            mb-4
+          "
+        >
+          {blog.createdAt}
         </p>
 
         {/* TITLE */}
-
-        <h1 className="
-          text-5xl
-          font-bold
-          mb-6
-        ">
+        <h1
+          className="
+            text-5xl
+            font-bold
+            mb-6
+          "
+        >
           {blog.title}
         </h1>
 
         {/* AUTHOR */}
-
-        <p className="
-          text-zinc-500
-          mb-10
-        ">
+        <p
+          className="
+            text-zinc-500
+            mb-10
+          "
+        >
           By {blog.author}
         </p>
 
-        {/* ARTICLE */}
-
+        {/* CONTENT */}
         <div
           className="
             text-lg

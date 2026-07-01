@@ -21,7 +21,7 @@ const Home = () => {
   }
 
   return (
-    <main className="bg-black text-white">
+    <main className="bg-[#0F1921] text-white">
       <section
         className="
           relative
@@ -52,7 +52,7 @@ const Home = () => {
   "
 />
 
-<p className="mb-6 tracking-[8px] text-[#B88A2E]">
+<p className="mb-6 tracking-[8px] text-[#D1C19E]">
   INTERIOR DESIGN & BUILD
 </p>
 
@@ -98,7 +98,7 @@ const Home = () => {
               }
               className="
     rounded
-    bg-[#B88A2E]
+    bg-[#D1C19E]
     px-8
     py-4
     hover:scale-105
@@ -128,11 +128,11 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-zinc-950 py-10">
+      <section className="bg-[#16222B] py-10">
         <p
           className="
     text-center
-    text-[#B88A2E]
+    text-[#D1C19E]
     tracking-[6px]
     mb-4
   "
@@ -150,28 +150,28 @@ const Home = () => {
   text-center"
         >
           <div>
-            <h2 className="text-5xl font-bold text-[#B88A2E]">
+            <h2 className="text-5xl font-bold text-[#D1C19E]">
               <Counter end={5} />+
             </h2>
             <p>Years Experience</p>
           </div>
 
           <div>
-            <h2 className="text-5xl font-bold text-[#B88A2E]">
+            <h2 className="text-5xl font-bold text-[#D1C19E]">
               <Counter end={150} />+
             </h2>
             <p>Projects</p>
           </div>
 
           <div>
-            <h2 className="text-5xl font-bold text-[#B88A2E]">
+            <h2 className="text-5xl font-bold text-[#D1C19E]">
               <Counter end={98} />%
             </h2>
             <p>Satisfaction</p>
           </div>
 
           <div>
-            <h2 className="text-5xl font-bold text-[#B88A2E]">
+            <h2 className="text-5xl font-bold text-[#D1C19E]">
               <Counter end={20} />+
             </h2>
             <p>Experts</p>
@@ -194,7 +194,7 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col justify-center">
-            <p className="mb-4 text-[#B88A2E]">ABOUT US</p>
+            <p className="mb-4 text-[#D1C19E]">ABOUT US</p>
 
             <h2 className="mb-6 text-5xl font-bold">
               Luxury Interior Design Experience
@@ -213,7 +213,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section id="services" className="bg-zinc-950 py-24">
+      <section id="services" className="bg-[#16222B] py-24">
         <h2 className="mb-20 text-center text-5xl font-bold">Our Services</h2>
 
         <div
@@ -232,7 +232,7 @@ const Home = () => {
 border border-zinc-700
 p-8
 rounded
-hover:border-[#B88A2E]
+hover:border-[#D1C19E]
 hover:-translate-y-2
 hover:shadow-[0_0_30px_rgba(202,138,4,0.2)]
 transition
@@ -249,7 +249,7 @@ duration-300
 border border-zinc-700
 p-8
 rounded
-hover:border-[#B88A2E]
+hover:border-[#D1C19E]
 hover:-translate-y-2
 hover:shadow-[0_0_30px_rgba(202,138,4,0.2)]
 transition
@@ -265,7 +265,7 @@ duration-300
 border border-zinc-700
 p-8
 rounded
-hover:border-[#B88A2E]
+hover:border-[#D1C19E]
 hover:-translate-y-2
 hover:shadow-[0_0_30px_rgba(202,138,4,0.2)]
 transition
@@ -323,7 +323,7 @@ duration-300
       "
             >
               <div>
-                <p className="text-[#B88A2E]">Residential Interior Design</p>
+                <p className="text-[#D1C19E]">Residential Interior Design</p>
                 <h3 className="text-2xl font-bold">Modern Family Residence</h3>
               </div>
             </div>
@@ -358,7 +358,7 @@ duration-300
       "
             >
               <div>
-                <p className="text-[#B88A2E]">Modern Luxury Living Room</p>
+                <p className="text-[#D1C19E]">Modern Luxury Living Room</p>
                 <h3 className="text-2xl font-bold">Elegant Living Space</h3>
               </div>
             </div>
@@ -393,7 +393,7 @@ duration-300
       "
             >
               <div>
-                <p className="text-[#B88A2E]">Office Interior</p>
+                <p className="text-[#D1C19E]">Office Interior</p>
                 <h3 className="text-2xl font-bold">Corporate Workspace</h3>
               </div>
             </div>
@@ -428,7 +428,7 @@ duration-300
       "
             >
               <div>
-                <p className="text-[#B88A2E]">Custom Furniture</p>
+                <p className="text-[#D1C19E]">Custom Furniture</p>
                 <h3 className="text-2xl font-bold">Built-In Wardrobe</h3>
               </div>
             </div>
@@ -463,7 +463,7 @@ duration-300
       "
             >
               <div>
-                <p className="text-[#B88A2E]">Renovation & Design Build</p>
+                <p className="text-[#D1C19E]">Renovation & Design Build</p>
                 <h3 className="text-2xl font-bold">Complete Home Renovation</h3>
               </div>
             </div>
@@ -498,7 +498,7 @@ duration-300
       "
             >
               <div>
-                <p className="text-[#B88A2E]">
+                <p className="text-[#D1C19E]">
                   Commercial Space / Café Interior
                 </p>
                 <h3 className="text-2xl font-bold">Modern Café Concept</h3>
@@ -510,7 +510,7 @@ duration-300
 
       <Testimonials />
 
-      <section className="bg-zinc-950 py-24 text-center">
+      <section className="bg-[#16222B] py-24 text-center">
         <h2 className="mb-8 text-5xl font-bold">
           Ready To Build Your Dream Space?
         </h2>
@@ -519,7 +519,7 @@ duration-300
           className="
     inline-block
     rounded
-    bg-[#B88A2E]
+    bg-[#D1C19E]
     px-10
     py-4
     hover:scale-105

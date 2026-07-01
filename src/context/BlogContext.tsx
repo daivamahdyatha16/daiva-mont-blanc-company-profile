@@ -1,73 +1,87 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import {
+  getArticle,
+  createArticle,
+  deleteArticle,
+  updateArticle,
+} from "../lib/articleService";
 
 export type Blog = {
+  objectId?: string;
   title: string;
+  image: string;
   content: string;
-  image : string;
   author: string;
-  date: string;
+  ownerEmail: string;
+  createdAt: string;
 };
 
 type BlogContextType = {
   blogs: Blog[];
-  addBlog: (blog: Blog) => void;
-  deleteBlog: (index: number) => void;
-  editBlog: (
-    index: number,
-    blog: Blog
-  ) => void;
-
+  addBlog: (blog: Blog) => Promise<void>;
+  deleteBlog: (id: string) => Promise<void>;
+  editBlog: (id: string, blog: Blog) => Promise<void>;
+  fetchBlogs: () => Promise<void>;
 };
 
-const BlogContext = createContext<BlogContextType>({} as BlogContextType);
+const BlogContext = createContext<BlogContextType>(
+  {} as BlogContextType
+);
 
-export const BlogProvider = ({ children }: { children: React.ReactNode }) => {
+
+
+export const BlogProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
-  useEffect(() => {
-    const saved = localStorage.getItem("blogs");
+  const fetchBlogs = async () => {
+    try {
+      const result = await getArticle();
 
-    if (saved) {
-      setBlogs(JSON.parse(saved));
+      setBlogs(
+        result.map((item: any) => ({
+          objectId: item.objectId,
+          title: item.title,
+          image: item.image,
+          content: item.content,
+          author: item.author,
+          ownerEmail: item.ownerEmail,
+          createdAt: item.createdAt,
+        }))
+      );
+    } catch (err) {
+      console.error(err);
     }
-  }, []);
-
-  const addBlog = (blog: Blog) => {
-    const updated = [...blogs, blog];
-
-    setBlogs(updated);
-
-    localStorage.setItem("blogs", JSON.stringify(updated));
   };
 
-  const deleteBlog = (index: number) => {
-  const updated = blogs.filter(
-    (_, i) => i !== index
-  );
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
 
-  setBlogs(updated);
+  const addBlog = async (blog: Blog) => {
+    await createArticle(blog);
+    await fetchBlogs();
+  };
 
-  localStorage.setItem(
-    "blogs",
-    JSON.stringify(updated)
-  );
-};
+  const deleteBlog = async (id: string) => {
+    await deleteArticle(id);
+    await fetchBlogs();
+  };
 
-const editBlog = (
-  index: number,
-  updatedBlog: Blog
-) => {
-  const newBlogs = [...blogs];
+  const editBlog = async (
+    id: string,
+    blog: Blog
+  ) => {
+    await updateArticle({
+      objectId: id,
+      ...blog,
+    });
 
-  newBlogs[index] = updatedBlog;
-
-  setBlogs(newBlogs);
-
-  localStorage.setItem(
-    "blogs",
-    JSON.stringify(newBlogs)
-  );
-};
+    await fetchBlogs();
+  };
 
   return (
     <BlogContext.Provider
@@ -76,6 +90,7 @@ const editBlog = (
         addBlog,
         deleteBlog,
         editBlog,
+        fetchBlogs,
       }}
     >
       {children}
@@ -83,4 +98,5 @@ const editBlog = (
   );
 };
 
-export const useBlog = () => useContext(BlogContext);
+export const useBlog = () =>
+  useContext(BlogContext);

@@ -18,11 +18,11 @@ const Projects = () => {
   }
     
   return (
-    <div className="min-h-screen bg-black text-white pt-32 pb-24">
+    <div className="min-h-screen bg-[#0F1921] text-white pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* HEADER */}
 
-        <p className="text-[#B88A2E] tracking-[6px] mb-4">
+        <p className="text-[#D1C19E] tracking-[6px] mb-4">
           OUR PORTFOLIO
         </p>
 
@@ -30,7 +30,7 @@ const Projects = () => {
           Featured Projects
         </h1>
 
-        <p className="text-zinc-400 text-lg leading-8 max-w-4xl mb-20">
+        <p className="text-[#A7ADB3] text-lg leading-8 max-w-4xl mb-20">
           Explore our portfolio of luxury residential, commercial,
           renovation, and custom furniture projects designed to
           create timeless and meaningful spaces.
@@ -79,7 +79,7 @@ const Projects = () => {
               "
             >
               <div>
-                <p className="text-[#B88A2E]">
+                <p className="text-[#D1C19E]">
                   Residential Interior Design
                 </p>
 
@@ -120,7 +120,7 @@ const Projects = () => {
               "
             >
               <div>
-                <p className="text-[#B88A2E]">
+                <p className="text-[#D1C19E]">
                   Modern Luxury Living Room
                 </p>
 
@@ -161,7 +161,7 @@ const Projects = () => {
               "
             >
               <div>
-                <p className="text-[#B88A2E]">
+                <p className="text-[#D1C19E]">
                   Office Interior
                 </p>
 
@@ -202,7 +202,7 @@ const Projects = () => {
               "
             >
               <div>
-                <p className="text-[#B88A2E]">
+                <p className="text-[#D1C19E]">
                   Custom Furniture
                 </p>
 
@@ -243,7 +243,7 @@ const Projects = () => {
               "
             >
               <div>
-                <p className="text-[#B88A2E]">
+                <p className="text-[#D1C19E]">
                   Renovation & Design Build
                 </p>
 
@@ -284,7 +284,7 @@ const Projects = () => {
               "
             >
               <div>
-                <p className="text-[#B88A2E]">
+                <p className="text-[#D1C19E]">
                   Commercial Space / Café Interior
                 </p>
 

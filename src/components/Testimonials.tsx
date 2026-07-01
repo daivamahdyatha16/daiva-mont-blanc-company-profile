@@ -52,11 +52,11 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="bg-zinc-950 py-24">
+    <section className="bg-[#16222B] py-24">
       <p
         className="
         text-center
-        text-[#B88A2E]
+        text-[#D1C19E]
         tracking-[6px]
         mb-4
       "
@@ -90,18 +90,18 @@ const Testimonials = () => {
               className="
                   min-w-[400px]
                   max-w-[400px]
-                  bg-black
+                  bg-[#0F1921]
                   border
-                  border-zinc-800
+                  border-[#2A3842]
                   rounded-2xl
                   p-8
-                  hover:border-[#B88A2E]
+                  hover:border-[#D1C19E]
                   transition
                 "
             >
               <p
                 className="
-                  text-[#B88A2E]
+                  text-[#D1C19E]
                   text-2xl
                   mb-4
                 "

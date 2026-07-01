@@ -39,16 +39,16 @@ const teams = [
 
 const Teams = () => {
   return (
-    <div className="min-h-screen bg-black text-white pt-32 pb-24 px-6">
+    <div className="min-h-screen bg-[#0F1921] text-white pt-32 pb-24 px-6">
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
-        <p className="text-[#B88A2E] tracking-[6px] mb-4">OUR TEAM</p>
+        <p className="text-[#D1C19E] tracking-[6px] mb-4">OUR TEAM</p>
 
         <h1 className="text-5xl md:text-7xl font-bold mb-8">
           Meet The Experts
         </h1>
 
-        <p className="text-zinc-400 text-lg leading-8 max-w-4xl mb-20">
+        <p className="text-[#A7ADB3] text-lg leading-8 max-w-4xl mb-20">
           Behind every successful project is a team of passionate architects,
           interior designers, project managers, and craftsmen dedicated to
           creating timeless luxury spaces.
@@ -60,12 +60,12 @@ const Teams = () => {
             <div
               key={member.name}
               className="
-    bg-zinc-950
+    bg-[#16222B]
     border
-    border-zinc-800
+    border-[#2A3842]
     rounded-2xl
     overflow-hidden
-    hover:border-[#B88A2E]
+    hover:border-[#D1C19E]
     hover:-translate-y-2
     hover:shadow-[0_0_30px_rgba(184,138,46,0.15)]
     transition
@@ -93,9 +93,9 @@ const Teams = () => {
               <div className="p-8">
                 <h2 className="text-2xl font-bold mb-2">{member.name}</h2>
 
-                <p className="text-[#B88A2E] mb-4">{member.role}</p>
+                <p className="text-[#D1C19E] mb-4">{member.role}</p>
 
-                <p className="text-zinc-400 leading-7">{member.desc}</p>
+                <p className="text-[#A7ADB3] leading-7">{member.desc}</p>
               </div>
             </div>
           ))}

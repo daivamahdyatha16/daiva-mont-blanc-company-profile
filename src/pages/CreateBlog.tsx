@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useBlog } from "../context/BlogContext";
 import { useAuth } from "../context/AuthContext";
+import { createArticle } from "../lib/articleService";
+import { useBlog } from "../context/BlogContext";
 
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 const CreateBlog = () => {
-  const { addBlog } = useBlog();
   const { currentUser } = useAuth();
+  const { fetchBlogs } = useBlog();
 
   const navigate = useNavigate();
 
@@ -35,47 +36,53 @@ const CreateBlog = () => {
         .required("Content is required"),
     }),
 
-    onSubmit: (values) => {
-      addBlog({
-        title: values.title,
-        image: values.image,
-        content: values.content,
-        author:
-          currentUser?.name ||
-          "Anonymous",
-        date:
-          new Date().toLocaleDateString(),
-      });
+    onSubmit: async (values) => {
+      try {
+        await createArticle({
+          title: values.title,
+          image: values.image,
+          content: values.content,
+          author: currentUser?.name || "Anonymous",
+          ownerEmail: currentUser?.email || "",
+          createdAt: new Date().toISOString(),
+        });
 
-      navigate("/blogs");
+        await fetchBlogs();
+
+        alert("Article published successfully");
+
+        navigate("/blogs");
+      } catch (err) {
+        console.error(err);
+        alert("Failed to publish article");
+      }
     },
   });
 
   return (
-    <div className="min-h-screen bg-black text-white pt-32 px-6">
+    <div className="min-h-screen bg-[#0F1921] text-white pt-32 px-6">
       <div className="max-w-4xl mx-auto">
+        {/* HEADER */}
 
         <div className="mb-10">
-          <p className="text-[#B88A2E] tracking-[6px] mb-3">
-            PUBLISH ARTICLE
-          </p>
+          <p className="text-[#D1C19E] tracking-[6px] mb-3">PUBLISH ARTICLE</p>
 
-          <h1 className="text-5xl font-bold">
-            Share New Insights
-          </h1>
+          <h1 className="text-5xl font-bold">Share New Insights</h1>
 
-          <p className="text-zinc-400 mt-4">
-            Publish articles about interior design,
-            architecture, renovation, and luxury lifestyle.
+          <p className="text-[#A7ADB3] mt-4">
+            Publish articles about interior design, architecture, renovation,
+            and luxury lifestyle.
           </p>
         </div>
+
+        {/* FORM */}
 
         <form
           onSubmit={formik.handleSubmit}
           className="
-            bg-zinc-950
+            bg-[#16222B]
             border
-            border-zinc-800
+            border-[#2A3842]
             rounded-2xl
             p-8
             space-y-6
@@ -84,20 +91,14 @@ const CreateBlog = () => {
           {/* TITLE */}
 
           <div>
-            <label className="block mb-3">
-              Article Title
-            </label>
+            <label className="block mb-3">Article Title</label>
 
             <input
               type="text"
               name="title"
               value={formik.values.title}
-              onChange={
-                formik.handleChange
-              }
-              onBlur={
-                formik.handleBlur
-              }
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="
                 w-full
                 p-4
@@ -105,35 +106,28 @@ const CreateBlog = () => {
                 bg-zinc-900
                 border
                 border-zinc-700
+                focus:outline-none
+                focus:border-[#D1C19E]
               "
             />
 
-            {formik.touched.title &&
-              formik.errors.title && (
-                <p className="text-red-500 mt-2 text-sm">
-                  {formik.errors.title}
-                </p>
-              )}
+            {formik.touched.title && formik.errors.title && (
+              <p className="text-red-500 mt-2 text-sm">{formik.errors.title}</p>
+            )}
           </div>
 
-          {/* IMAGE URL */}
+          {/* IMAGE */}
 
           <div>
-            <label className="block mb-3">
-              Image URL
-            </label>
+            <label className="block mb-3">Image URL</label>
 
             <input
               type="text"
               name="image"
               placeholder="https://images.unsplash.com/..."
               value={formik.values.image}
-              onChange={
-                formik.handleChange
-              }
-              onBlur={
-                formik.handleBlur
-              }
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="
                 w-full
                 p-4
@@ -141,15 +135,14 @@ const CreateBlog = () => {
                 bg-zinc-900
                 border
                 border-zinc-700
+                focus:outline-none
+                focus:border-[#D1C19E]
               "
             />
 
-            {formik.touched.image &&
-              formik.errors.image && (
-                <p className="text-red-500 mt-2 text-sm">
-                  {formik.errors.image}
-                </p>
-              )}
+            {formik.touched.image && formik.errors.image && (
+              <p className="text-red-500 mt-2 text-sm">{formik.errors.image}</p>
+            )}
           </div>
 
           {/* PREVIEW */}
@@ -158,8 +151,7 @@ const CreateBlog = () => {
             <img
               src={formik.values.image}
               onError={(e) => {
-                e.currentTarget.src =
-                  "/placeholder.jpg";
+                e.currentTarget.src = "/placeholder.webp";
               }}
               className="
                 w-full
@@ -173,20 +165,14 @@ const CreateBlog = () => {
           {/* CONTENT */}
 
           <div>
-            <label className="block mb-3">
-              Article Content
-            </label>
+            <label className="block mb-3">Article Content</label>
 
             <textarea
               rows={10}
               name="content"
               value={formik.values.content}
-              onChange={
-                formik.handleChange
-              }
-              onBlur={
-                formik.handleBlur
-              }
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="
                 w-full
                 p-4
@@ -194,22 +180,25 @@ const CreateBlog = () => {
                 bg-zinc-900
                 border
                 border-zinc-700
+                focus:outline-none
+                focus:border-[#D1C19E]
               "
             />
 
-            {formik.touched.content &&
-              formik.errors.content && (
-                <p className="text-red-500 mt-2 text-sm">
-                  {formik.errors.content}
-                </p>
-              )}
+            {formik.touched.content && formik.errors.content && (
+              <p className="text-red-500 mt-2 text-sm">
+                {formik.errors.content}
+              </p>
+            )}
           </div>
+
+          {/* BUTTON */}
 
           <button
             type="submit"
             className="
-              bg-[#B88A2E]
-              text-black
+              bg-[#D1C19E]
+              text-[#0F1921]
               font-semibold
               px-8
               py-3

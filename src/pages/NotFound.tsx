@@ -4,7 +4,7 @@ const NotFound = () => {
   return (
     <div className="
       min-h-screen
-      bg-black
+      bg-[#0F1921]
       text-white
       flex
       items-center
@@ -14,7 +14,7 @@ const NotFound = () => {
       <div className="text-center">
 
         <p className="
-          text-[#B88A2E]
+          text-[#D1C19E]
           tracking-[8px]
           mb-6
         ">
@@ -40,7 +40,7 @@ const NotFound = () => {
         </h2>
 
         <p className="
-          text-zinc-400
+          text-[#A7ADB3]
           mb-10
           max-w-lg
           mx-auto
@@ -53,7 +53,7 @@ const NotFound = () => {
           to="/"
           className="
             inline-block
-            bg-[#B88A2E]
+            bg-[#D1C19E]
             text-black
             px-8
             py-4
