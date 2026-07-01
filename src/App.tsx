@@ -14,6 +14,7 @@ import EditBlog from "./pages/EditBlog";
 import GuestRoute from "./components/GuestRoute";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
+import Projects from "./pages/Projects";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/projects" element={<Projects />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

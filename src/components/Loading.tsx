@@ -1,35 +1,37 @@
 const Loading = () => {
   return (
-    <div className="
-      min-h-screen
-      bg-black
-      flex
-      items-center
-      justify-center
-    ">
-      <div className="flex flex-col items-center">
+    <div
+      className="
+        fixed
+        inset-0
+        z-[9999]
+        flex
+        flex-col
+        items-center
+        justify-center
+        bg-black
+      "
+    >
+      <img
+        src="/montblanc-logo.webp"
+        alt="Mont Blanc"
+        className="
+    w-40
+    animate-[pulse_2s_ease-in-out_infinite]
+    drop-shadow-[0_0_25px_rgba(184,138,46,0.5)]
+  "
+      />
 
-        <div
-          className="
-            w-16
-            h-16
-            border-4
-            border-zinc-700
-            border-t-[#B88A2E]
-            rounded-full
-            animate-spin
-          "
-        />
-
-        <p className="
-          mt-6
+      <p
+        className="
+          mt-8
           text-[#B88A2E]
-          tracking-[6px]
-        ">
-          LOADING
-        </p>
-
-      </div>
+          tracking-[8px]
+          text-sm
+        "
+      >
+        PLEASE WAIT •••
+      </p>
     </div>
   );
 };

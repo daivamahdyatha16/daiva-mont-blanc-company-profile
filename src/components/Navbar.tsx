@@ -9,11 +9,7 @@ const Navbar = () => {
 
   const [open, setOpen] = useState(false);
 
-  const navClass = ({
-    isActive,
-  }: {
-    isActive: boolean;
-  }) =>
+  const navClass = ({ isActive }: { isActive: boolean }) =>
     isActive
       ? "text-[#B88A2E] font-semibold"
       : "text-white hover:text-[#B88A2E] transition";
@@ -21,42 +17,61 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 z-50 w-full bg-black/95 backdrop-blur border-b border-zinc-800">
       <div className="w-full px-6">
-
         {/* DESKTOP HEADER */}
 
         <div className="flex justify-between items-center h-20 w-full">
           {/* LOGO */}
 
-          <Link to="/">
-            <h1 className="
-              text-xl
-    md:text-4xl
-    font-bold
-    tracking-[4px]
-    md:tracking-widest
-    text-[#B88A2E]
-    whitespace-nowrap
-            ">
-              MONT BLANC
-            </h1>
+          {/* LOGO */}
+          <Link
+            to="/"
+            className="
+    flex
+    items-center
+    justify-center
+    overflow-hidden
+    h-16
+    w-30
+  "
+          >
+            <img
+              src="/montblanc-logo.webp"
+              alt="Mont Blanc"
+              className="
+      h-10
+      object-contain
+      scale-[4.5]
+      origin-center
+      opacity-90
+      hover:opacity-100
+      transition
+      mt-4
+    "
+            />
           </Link>
 
           {/* DESKTOP MENU */}
 
-          <div className="
+          <div
+            className="
             hidden
             md:flex
             gap-8
             items-center
             text-sm
             font-medium
-          ">
+          "
+          >
             <NavLink to="/" className={navClass}>
               Home
             </NavLink>
 
             <NavLink to="/about" className={navClass}>
               About
+            </NavLink>
+
+            <NavLink to="/projects" className={navClass}>
+              Projects
             </NavLink>
 
             <NavLink to="/services" className={navClass}>
@@ -73,16 +88,12 @@ const Navbar = () => {
 
             {currentUser ? (
               <>
-                <NavLink
-                  to="/create-blog"
-                  className={navClass}
-                >
+                <NavLink to="/create-blog" className={navClass}>
                   Write Article
                 </NavLink>
 
                 <span className="text-zinc-400">
-                  Hi,{" "}
-                  {currentUser.name.split(" ")[0]}
+                  Hi, {currentUser.name.split(" ")[0]}
                 </span>
 
                 <button
@@ -151,15 +162,9 @@ const Navbar = () => {
     shrink-0
 
   "
-            onClick={() =>
-              setOpen(!open)
-            }
+            onClick={() => setOpen(!open)}
           >
-            {open ? (
-              <HiX />
-            ) : (
-              <HiOutlineMenu />
-            )}
+            {open ? <HiX /> : <HiOutlineMenu />}
           </button>
         </div>
 
@@ -178,22 +183,14 @@ const Navbar = () => {
               border-zinc-800
             "
           >
-            <NavLink
-              to="/"
-              className={navClass}
-              onClick={() =>
-                setOpen(false)
-              }
-            >
+            <NavLink to="/" className={navClass} onClick={() => setOpen(false)}>
               Home
             </NavLink>
 
             <NavLink
               to="/about"
               className={navClass}
-              onClick={() =>
-                setOpen(false)
-              }
+              onClick={() => setOpen(false)}
             >
               About
             </NavLink>
@@ -201,9 +198,7 @@ const Navbar = () => {
             <NavLink
               to="/services"
               className={navClass}
-              onClick={() =>
-                setOpen(false)
-              }
+              onClick={() => setOpen(false)}
             >
               Services
             </NavLink>
@@ -211,9 +206,7 @@ const Navbar = () => {
             <NavLink
               to="/teams"
               className={navClass}
-              onClick={() =>
-                setOpen(false)
-              }
+              onClick={() => setOpen(false)}
             >
               Teams
             </NavLink>
@@ -221,9 +214,7 @@ const Navbar = () => {
             <NavLink
               to="/blogs"
               className={navClass}
-              onClick={() =>
-                setOpen(false)
-              }
+              onClick={() => setOpen(false)}
             >
               Insights
             </NavLink>
@@ -233,9 +224,7 @@ const Navbar = () => {
                 <NavLink
                   to="/create-blog"
                   className={navClass}
-                  onClick={() =>
-                    setOpen(false)
-                  }
+                  onClick={() => setOpen(false)}
                 >
                   Write Article
                 </NavLink>
@@ -260,9 +249,7 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  onClick={() =>
-                    setOpen(false)
-                  }
+                  onClick={() => setOpen(false)}
                   className="
                     border
                     border-[#B88A2E]
@@ -276,9 +263,7 @@ const Navbar = () => {
 
                 <Link
                   to="/register"
-                  onClick={() =>
-                    setOpen(false)
-                  }
+                  onClick={() => setOpen(false)}
                   className="
                     bg-[#B88A2E]
                     text-black
