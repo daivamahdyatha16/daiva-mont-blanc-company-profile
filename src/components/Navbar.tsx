@@ -1,150 +1,297 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { HiOutlineMenu } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
 
-  const navClass = ({ isActive }: { isActive: boolean }) =>
+  const [open, setOpen] = useState(false);
+
+  const navClass = ({
+    isActive,
+  }: {
+    isActive: boolean;
+  }) =>
     isActive
-      ? "text-[#B88A2E] font-semibold transition duration-300"
-      : "text-white hover:text-[#B88A2E] transition duration-300";
+      ? "text-[#B88A2E] font-semibold"
+      : "text-white hover:text-[#B88A2E] transition";
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-black/90 backdrop-blur border-b border-zinc-800">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-5">
-        {/* Logo */}
-        <Link to="/">
-          <h1 className="text-3xl font-bold tracking-widest text-[#B88A2E] hover:text-[#B88A2E] transition">
-            MONT BLANC
-          </h1>
-        </Link>
+    <nav className="fixed top-0 z-50 w-full bg-black/95 backdrop-blur border-b border-zinc-800">
+      <div className="w-full px-6">
 
-        {/* Menu */}
-        <div className="flex gap-8 items-center text-sm font-medium">
-          <NavLink to="/" className={navClass}>
-            Home
-          </NavLink>
+        {/* DESKTOP HEADER */}
 
-          <NavLink to="/about" className={navClass}>
-            About
-          </NavLink>
+        <div className="flex justify-between items-center h-20 w-full">
+          {/* LOGO */}
 
-          <NavLink to="/services" className={navClass}>
-            Services
-          </NavLink>
+          <Link to="/">
+            <h1 className="
+              text-xl
+    md:text-4xl
+    font-bold
+    tracking-[4px]
+    md:tracking-widest
+    text-[#B88A2E]
+    whitespace-nowrap
+            ">
+              MONT BLANC
+            </h1>
+          </Link>
 
-          <NavLink to="/teams" className={navClass}>
-            Teams
-          </NavLink>
+          {/* DESKTOP MENU */}
 
-          <NavLink to="/blogs" className={navClass}>
-            Insights
-          </NavLink>
+          <div className="
+            hidden
+            md:flex
+            gap-8
+            items-center
+            text-sm
+            font-medium
+          ">
+            <NavLink to="/" className={navClass}>
+              Home
+            </NavLink>
 
-          {currentUser ? (
-            <>
-              <NavLink to="/create-blog" className={navClass}>
-                Write Article
-              </NavLink>
+            <NavLink to="/about" className={navClass}>
+              About
+            </NavLink>
 
-              <span className="text-zinc-400">
-                Hi, {currentUser.name.split(" ")[0]}
-              </span>
+            <NavLink to="/services" className={navClass}>
+              Services
+            </NavLink>
 
-              <button
-                onClick={logout}
-                className="
-    bg-[#B88A2E]
-  text-black
-  font-semibold
-  px-8
-  py-3
-  rounded-xl
+            <NavLink to="/teams" className={navClass}>
+              Teams
+            </NavLink>
 
-  shadow-lg
-  shadow-yellow-700/30
+            <NavLink to="/blogs" className={navClass}>
+              Insights
+            </NavLink>
 
-  hover:-translate-y-1
-  hover:scale-105
-  hover:shadow-xl
-  hover:shadow-yellow-600/50
+            {currentUser ? (
+              <>
+                <NavLink
+                  to="/create-blog"
+                  className={navClass}
+                >
+                  Write Article
+                </NavLink>
 
-  transition-all
-  duration-300
+                <span className="text-zinc-400">
+                  Hi,{" "}
+                  {currentUser.name.split(" ")[0]}
+                </span>
+
+                <button
+                  onClick={logout}
+                  className="
+                    bg-[#B88A2E]
+                    text-black
+                    px-5
+                    py-2
+                    rounded-xl
+                    hover:scale-105
+                    transition
+                  "
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="
+                    border
+                    border-[#B88A2E]
+                    text-[#B88A2E]
+                    px-5
+                    py-2
+                    rounded-full
+                    hover:bg-[#B88A2E]
+                    hover:text-black
+                    transition
+                  "
+                >
+                  Login
+                </Link>
+
+                <Link
+                  to="/register"
+                  className="
+                    bg-[#B88A2E]
+                    text-black
+                    px-5
+                    py-2
+                    rounded-full
+                    hover:scale-105
+                    transition
+                  "
+                >
+                  Register
+                </Link>
+              </>
+            )}
+          </div>
+
+          {/* MOBILE BUTTON */}
+
+          <button
+            className="
+        md:hidden
+    flex
+    items-center
+    justify-center
+    text-white
+    text-3xl
+    ml-4
+    shrink-0
 
   "
-              >
-                <span className="relative z-10">Logout</span>
-
-                <span
-                  className="
-      absolute
-      bottom-2
-      left-1/2
-      h-[2px]
-      w-0
-      bg-black
-      -translate-x-1/2
-      transition-all
-      duration-300
-      group-hover:w-10
-    "
-                />
-              </button>
-            </>
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="
-      border
-      border-[#B88A2E]
-      text-[#B88A2E]
-      px-5
-      py-2
-      rounded-full
-      hover:bg-[#B88A2E]
-      hover:text-black
-      transition
-      duration-300
-        shadow-lg
-  shadow-yellow-700/30
-
-  hover:-translate-y-1
-  hover:scale-105
-  hover:shadow-xl
-  hover:shadow-yellow-600/50
-    "
-              >
-                Login
-              </Link>
-
-              <Link
-                to="/register"
-                className="
-      bg-[#B88A2E]
-      text-black
-      px-5
-      py-2
-      rounded-full
-      hover:bg-[#B88A2E]
-      transition
-      duration-300
-        shadow-lg
-  shadow-yellow-700/30
-
-  hover:-translate-y-1
-  hover:scale-105
-  hover:shadow-xl
-  hover:shadow-yellow-600/50
-
-    "
-              >
-                Register
-              </Link>
-            </>
-          )}
+            onClick={() =>
+              setOpen(!open)
+            }
+          >
+            {open ? (
+              <HiX />
+            ) : (
+              <HiOutlineMenu />
+            )}
+          </button>
         </div>
+
+        {/* MOBILE MENU */}
+
+        {open && (
+          <div
+            className="
+              md:hidden
+              flex
+              flex-col
+              gap-5
+              py-6
+              text-center
+              border-t
+              border-zinc-800
+            "
+          >
+            <NavLink
+              to="/"
+              className={navClass}
+              onClick={() =>
+                setOpen(false)
+              }
+            >
+              Home
+            </NavLink>
+
+            <NavLink
+              to="/about"
+              className={navClass}
+              onClick={() =>
+                setOpen(false)
+              }
+            >
+              About
+            </NavLink>
+
+            <NavLink
+              to="/services"
+              className={navClass}
+              onClick={() =>
+                setOpen(false)
+              }
+            >
+              Services
+            </NavLink>
+
+            <NavLink
+              to="/teams"
+              className={navClass}
+              onClick={() =>
+                setOpen(false)
+              }
+            >
+              Teams
+            </NavLink>
+
+            <NavLink
+              to="/blogs"
+              className={navClass}
+              onClick={() =>
+                setOpen(false)
+              }
+            >
+              Insights
+            </NavLink>
+
+            {currentUser ? (
+              <>
+                <NavLink
+                  to="/create-blog"
+                  className={navClass}
+                  onClick={() =>
+                    setOpen(false)
+                  }
+                >
+                  Write Article
+                </NavLink>
+
+                <button
+                  onClick={() => {
+                    logout();
+                    setOpen(false);
+                  }}
+                  className="
+                    bg-[#B88A2E]
+                    text-black
+                    px-5
+                    py-3
+                    rounded-xl
+                  "
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  onClick={() =>
+                    setOpen(false)
+                  }
+                  className="
+                    border
+                    border-[#B88A2E]
+                    text-[#B88A2E]
+                    py-3
+                    rounded-xl
+                  "
+                >
+                  Login
+                </Link>
+
+                <Link
+                  to="/register"
+                  onClick={() =>
+                    setOpen(false)
+                  }
+                  className="
+                    bg-[#B88A2E]
+                    text-black
+                    py-3
+                    rounded-xl
+                  "
+                >
+                  Register
+                </Link>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </nav>
   );

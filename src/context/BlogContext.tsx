@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 export type Blog = {
   title: string;
   content: string;
+  image : string;
   author: string;
   date: string;
 };

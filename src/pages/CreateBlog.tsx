@@ -1,7 +1,9 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useBlog } from "../context/BlogContext.tsx";
+import { useBlog } from "../context/BlogContext";
 import { useAuth } from "../context/AuthContext";
+
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 const CreateBlog = () => {
   const { addBlog } = useBlog();
@@ -9,40 +11,67 @@ const CreateBlog = () => {
 
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      image: "",
+      content: "",
+    },
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
+    validationSchema: yup.object({
+      title: yup
+        .string()
+        .min(5, "Minimum 5 characters")
+        .required("Title is required"),
 
-    addBlog({
-      title,
-      content,
-      author: currentUser?.name || "Anonymous",
-      date: new Date().toLocaleDateString(),
-    });
+      image: yup
+        .string()
+        .url("Must be a valid URL")
+        .required("Image URL is required"),
 
-    navigate("/blogs");
-  };
+      content: yup
+        .string()
+        .min(20, "Minimum 20 characters")
+        .required("Content is required"),
+    }),
+
+    onSubmit: (values) => {
+      addBlog({
+        title: values.title,
+        image: values.image,
+        content: values.content,
+        author:
+          currentUser?.name ||
+          "Anonymous",
+        date:
+          new Date().toLocaleDateString(),
+      });
+
+      navigate("/blogs");
+    },
+  });
 
   return (
     <div className="min-h-screen bg-black text-white pt-32 px-6">
       <div className="max-w-4xl mx-auto">
-        {/* HEADER */}
-        <div className="mb-10">
-          <p className="text-[#B88A2E] tracking-[6px] mb-3">PUBLISH ARTICLE</p>
 
-          <h1 className="text-5xl font-bold">Share New Insights</h1>
+        <div className="mb-10">
+          <p className="text-[#B88A2E] tracking-[6px] mb-3">
+            PUBLISH ARTICLE
+          </p>
+
+          <h1 className="text-5xl font-bold">
+            Share New Insights
+          </h1>
 
           <p className="text-zinc-400 mt-4">
-            Publish articles about interior design, architecture, renovation,
-            and luxury lifestyle.
+            Publish articles about interior design,
+            architecture, renovation, and luxury lifestyle.
           </p>
         </div>
 
-        {/* FORM */}
         <form
-          onSubmit={submit}
+          onSubmit={formik.handleSubmit}
           className="
             bg-zinc-950
             border
@@ -53,12 +82,22 @@ const CreateBlog = () => {
           "
         >
           {/* TITLE */}
+
           <div>
-            <label className="block mb-3 text-zinc-300">Article Title</label>
+            <label className="block mb-3">
+              Article Title
+            </label>
 
             <input
               type="text"
-              placeholder="5 Luxury Interior Trends in 2026"
+              name="title"
+              value={formik.values.title}
+              onChange={
+                formik.handleChange
+              }
+              onBlur={
+                formik.handleBlur
+              }
               className="
                 w-full
                 p-4
@@ -66,21 +105,88 @@ const CreateBlog = () => {
                 bg-zinc-900
                 border
                 border-zinc-700
-                text-white
-                focus:outline-none
-                focus:border-[#B88A2E]
               "
-              onChange={(e) => setTitle(e.target.value)}
             />
+
+            {formik.touched.title &&
+              formik.errors.title && (
+                <p className="text-red-500 mt-2 text-sm">
+                  {formik.errors.title}
+                </p>
+              )}
           </div>
 
-          {/* CONTENT */}
+          {/* IMAGE URL */}
+
           <div>
-            <label className="block mb-3 text-zinc-300">Article Content</label>
+            <label className="block mb-3">
+              Image URL
+            </label>
+
+            <input
+              type="text"
+              name="image"
+              placeholder="https://images.unsplash.com/..."
+              value={formik.values.image}
+              onChange={
+                formik.handleChange
+              }
+              onBlur={
+                formik.handleBlur
+              }
+              className="
+                w-full
+                p-4
+                rounded-xl
+                bg-zinc-900
+                border
+                border-zinc-700
+              "
+            />
+
+            {formik.touched.image &&
+              formik.errors.image && (
+                <p className="text-red-500 mt-2 text-sm">
+                  {formik.errors.image}
+                </p>
+              )}
+          </div>
+
+          {/* PREVIEW */}
+
+          {formik.values.image && (
+            <img
+              src={formik.values.image}
+              onError={(e) => {
+                e.currentTarget.src =
+                  "/placeholder.jpg";
+              }}
+              className="
+                w-full
+                h-72
+                object-cover
+                rounded-xl
+              "
+            />
+          )}
+
+          {/* CONTENT */}
+
+          <div>
+            <label className="block mb-3">
+              Article Content
+            </label>
 
             <textarea
               rows={10}
-              placeholder="Write your article here..."
+              name="content"
+              value={formik.values.content}
+              onChange={
+                formik.handleChange
+              }
+              onBlur={
+                formik.handleBlur
+              }
               className="
                 w-full
                 p-4
@@ -88,53 +194,31 @@ const CreateBlog = () => {
                 bg-zinc-900
                 border
                 border-zinc-700
-                text-white
-                focus:outline-none
-                focus:border-[#B88A2E]
               "
-              onChange={(e) => setContent(e.target.value)}
             />
+
+            {formik.touched.content &&
+              formik.errors.content && (
+                <p className="text-red-500 mt-2 text-sm">
+                  {formik.errors.content}
+                </p>
+              )}
           </div>
 
-          {/* BUTTON */}
           <button
+            type="submit"
             className="
-    bg-[#B88A2E]
-  text-black
-  font-semibold
-  px-8
-  py-3
-  rounded-xl
-
-  shadow-lg
-  shadow-yellow-700/30
-
-  hover:-translate-y-1
-  hover:scale-105
-  hover:shadow-xl
-  hover:shadow-yellow-600/50
-
-  transition-all
-  duration-300
-
-  "
+              bg-[#B88A2E]
+              text-black
+              font-semibold
+              px-8
+              py-3
+              rounded-xl
+              hover:scale-105
+              transition
+            "
           >
-            <span className="relative z-10">Publish Article</span>
-
-            <div
-              className="
-      absolute
-      bottom-3
-      left-[-100%]
-      w-32
-      h-[2px]
-      bg-black
-      group-hover:left-1/2
-      transition-all
-      duration-500
-      -translate-x-1/2
-    "
-            />
+            Publish Article
           </button>
         </form>
       </div>

@@ -1,153 +1,219 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 const Register = () => {
   const { register } = useAuth();
 
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
 
-  const [email, setEmail] = useState("");
+    validationSchema: yup.object({
+      name: yup
+        .string()
+        .min(3, "Minimum 3 characters")
+        .required("Name is required"),
 
-  const [password, setPassword] = useState("");
+      email: yup
+        .string()
+        .email("Invalid email format")
+        .required("Email is required"),
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
+      password: yup
+        .string()
+        .min(6, "Minimum 6 characters")
+        .required("Password is required"),
+    }),
 
-    register({
-      name,
-      email,
-      password,
-    });
+    onSubmit: (values) => {
+      register(values);
 
-    navigate("/login");
-  };
+      navigate("/login");
+    },
+  });
 
   return (
     <div
       className="
-      min-h-screen
-      flex
-      justify-center
-      items-center
-      px-4
-      bg-black
-    "
+        min-h-screen
+        bg-black
+        flex
+        items-center
+        justify-center
+        px-4
+      "
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c')",
+          "url('https://images.unsplash.com/photo-1494526585095-c41746248156')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/85"></div>
+      <div className="absolute inset-0 bg-black/80"></div>
 
       <form
-        onSubmit={submit}
+        onSubmit={formik.handleSubmit}
         className="
-        relative
-        z-10
-        w-full
-        max-w-lg
-        p-10
-        rounded-3xl
-        bg-zinc-950/80
-        backdrop-blur-md
-        border
-        border-[#B88A2E]
-        shadow-[0_0_50px_rgba(202,138,4,0.15)]
-      "
+          relative
+          z-10
+          w-full
+          max-w-md
+          p-10
+          rounded-3xl
+          backdrop-blur-md
+          bg-black/50
+          border
+          border-[#B88A2E]/30
+          shadow-2xl
+        "
       >
+        {/* HEADER */}
+
         <div className="text-center mb-8">
-          <p className="text-[#B88A2E] tracking-[5px]">CREATE ACCOUNT</p>
+          <p className="text-[#B88A2E] tracking-[8px] text-sm">
+            JOIN MONT BLANC
+          </p>
 
-          <h1 className="text-6xl
-    font-bold
-    text-white
-    mt-4
-    drop-shadow-lg
-    font-serif
+          <h1 className="text-6xl font-bold text-white mt-4 font-serif">
+            Register
+          </h1>
 
-">Register</h1>
-
-          <p className="text-zinc-400 mt-4">Join us and start your journey</p>
+          <div className="w-16 h-[2px] bg-[#B88A2E] mx-auto mt-4"></div>
         </div>
 
-        <div className="space-y-4">
+        {/* NAME */}
+
+        <div className="mb-5">
           <input
+            type="text"
+            name="name"
             placeholder="Full Name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="
-            w-full
-            p-4
-            rounded-xl
-            bg-zinc-900
-            border
-            border-zinc-700
-            text-white
-            focus:border-[#B88A2E]
-            outline-none
-          "
-            onChange={(e) => setName(e.target.value)}
+              w-full
+              p-4
+              bg-zinc-900/70
+              border
+              border-zinc-700
+              rounded-xl
+              text-white
+              focus:outline-none
+              focus:border-[#B88A2E]
+            "
           />
 
+          {formik.touched.name &&
+            formik.errors.name && (
+              <p className="text-red-500 text-sm mt-2">
+                {formik.errors.name}
+              </p>
+            )}
+        </div>
+
+        {/* EMAIL */}
+
+        <div className="mb-5">
           <input
+            type="email"
+            name="email"
             placeholder="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="
-            w-full
-            p-4
-            rounded-xl
-            bg-zinc-900
-            border
-            border-zinc-700
-            text-white
-            focus:border-[#B88A2E]
-            outline-none
-          "
-            onChange={(e) => setEmail(e.target.value)}
+              w-full
+              p-4
+              bg-zinc-900/70
+              border
+              border-zinc-700
+              rounded-xl
+              text-white
+              focus:outline-none
+              focus:border-[#B88A2E]
+            "
           />
 
+          {formik.touched.email &&
+            formik.errors.email && (
+              <p className="text-red-500 text-sm mt-2">
+                {formik.errors.email}
+              </p>
+            )}
+        </div>
+
+        {/* PASSWORD */}
+
+        <div className="mb-6">
           <input
             type="password"
+            name="password"
             placeholder="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="
-            w-full
-            p-4
-            rounded-xl
-            bg-zinc-900
-            border
-            border-zinc-700
-            text-white
-            focus:border-[#B88A2E]
-            outline-none
-          "
-            onChange={(e) => setPassword(e.target.value)}
+              w-full
+              p-4
+              bg-zinc-900/70
+              border
+              border-zinc-700
+              rounded-xl
+              text-white
+              focus:outline-none
+              focus:border-[#B88A2E]
+            "
           />
 
-          <button
-            className="
-            mt-4
+          {formik.touched.password &&
+            formik.errors.password && (
+              <p className="text-red-500 text-sm mt-2">
+                {formik.errors.password}
+              </p>
+            )}
+        </div>
+
+        {/* BUTTON */}
+
+        <button
+          type="submit"
+          className="
             w-full
+            bg-[#B88A2E]
+            text-black
             py-4
             rounded-xl
-            bg-gradient-to-r
-            from-yellow-700
-            to-yellow-500
             font-bold
-            hover:scale-105
             transition
+            duration-300
+            hover:-translate-y-1
+            hover:scale-105
+            hover:shadow-xl
+            hover:shadow-yellow-600/50
           "
-          >
-            Create Account
-          </button>
-        </div>
+        >
+          Create Account
+        </button>
 
         <p className="text-center mt-8 text-zinc-400">
           Already have account?{" "}
           <span
-            onClick={() => navigate("/login")}
-            className="text-[#B88A2E] cursor-pointer"
+            onClick={() =>
+              navigate("/login")
+            }
+            className="
+              text-[#B88A2E]
+              cursor-pointer
+            "
           >
             Login
           </span>

@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BlogDetail from "./pages/BlogDetail";
 import EditBlog from "./pages/EditBlog";
+import GuestRoute from "./components/GuestRoute";
 
 function App() {
   return (
@@ -30,8 +31,23 @@ function App() {
             </ProtectedRoute>
           }
         />{" "}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/login"
+          element={
+            <GuestRoute>
+              <Login />
+            </GuestRoute>
+          }
+        />
+
+        <Route
+          path="/register"
+          element={
+            <GuestRoute>
+              <Register />
+            </GuestRoute>
+          }
+        />
         <Route path="/blogs/:id" element={<BlogDetail />} />
         <Route
           path="/edit-blog/:id"

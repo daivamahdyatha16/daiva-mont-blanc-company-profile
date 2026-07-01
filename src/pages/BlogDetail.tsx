@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useBlog } from "../context/BlogContext";
 
 const BlogDetail = () => {
@@ -11,34 +11,93 @@ const BlogDetail = () => {
   if (!blog) {
     return (
       <div className="min-h-screen bg-black text-white flex justify-center items-center">
-        Article not found
+        <h1 className="text-3xl">
+          Article not found
+        </h1>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-black text-white pt-32 px-6">
+      <div className="max-w-5xl mx-auto">
 
-      <div className="max-w-4xl mx-auto">
+        {/* BACK */}
 
-        <p className="text-[#B88A2E] mb-4">
+        <Link
+          to="/blogs"
+          className="
+            inline-block
+            mb-10
+            text-[#B88A2E]
+            hover:text-yellow-400
+            transition
+          "
+        >
+          ← Back to Articles
+        </Link>
+
+        {/* IMAGE */}
+
+        <img
+          src={blog.image}
+          onError={(e) => {
+            e.currentTarget.src =
+              "/montblanc-full-logo-text.webp";
+          }}
+          className="
+            w-full
+            h-[500px]
+            object-cover
+            rounded-2xl
+            mb-10
+          "
+        />
+
+        {/* DATE */}
+
+        <p className="
+          text-[#B88A2E]
+          tracking-[4px]
+          uppercase
+          mb-4
+        ">
           {blog.date}
         </p>
 
-        <h1 className="text-5xl font-bold mb-6">
+        {/* TITLE */}
+
+        <h1 className="
+          text-5xl
+          font-bold
+          mb-6
+        ">
           {blog.title}
         </h1>
 
-        <p className="text-zinc-500 mb-10">
+        {/* AUTHOR */}
+
+        <p className="
+          text-zinc-500
+          mb-10
+        ">
           By {blog.author}
         </p>
 
-        <div className="text-lg leading-9 text-zinc-300">
+        {/* ARTICLE */}
+
+        <div
+          className="
+            text-lg
+            leading-9
+            text-zinc-300
+            whitespace-pre-wrap
+          "
+        >
           {blog.content}
         </div>
 
       </div>
-
     </div>
   );
 };
