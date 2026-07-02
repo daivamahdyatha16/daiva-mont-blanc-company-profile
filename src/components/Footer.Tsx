@@ -16,7 +16,7 @@ const Footer = () => {
           gap-12
         "
       >
-        {/* BRAND */}
+        
 
         <div>
           <div>
@@ -44,7 +44,6 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* QUICK LINKS */}
 
         <div>
           <h3 className="text-xl font-semibold mb-6">Quick Links</h3>
@@ -124,7 +123,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* CONTACT */}
 
         <div>
           <h3 className="text-xl font-semibold mb-6">Contact</h3>
@@ -193,7 +191,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* COPYRIGHT */}
 
       <div
         className="

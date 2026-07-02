@@ -35,10 +35,9 @@ const Home = () => {
             "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c')",
         }}
       >
-        {/* overlay */}
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/40 to-black" />
 
-        {/* content */}
+        {}
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-8">
           <img
   src="/montblanc-logo.webp"
@@ -294,7 +293,6 @@ duration-300
     px-6
   "
         >
-          {/* PROJECT 1 */}
           <div className="group relative overflow-hidden rounded-lg">
             <img
               src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
@@ -329,7 +327,6 @@ duration-300
             </div>
           </div>
 
-          {/* PROJECT 2 */}
           <div className="group relative overflow-hidden rounded-lg">
             <img
               src="https://images.unsplash.com/photo-1600210492493-0946911123ea"
@@ -364,7 +361,6 @@ duration-300
             </div>
           </div>
 
-          {/* PROJECT 3 */}
           <div className="group relative overflow-hidden rounded-lg">
             <img
               src="https://images.unsplash.com/photo-1497366811353-6870744d04b2"
@@ -399,7 +395,6 @@ duration-300
             </div>
           </div>
 
-          {/* PROJECT 4 */}
           <div className="group relative overflow-hidden rounded-lg">
             <img
               src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
@@ -434,7 +429,6 @@ duration-300
             </div>
           </div>
 
-          {/* PROJECT 5 */}
           <div className="group relative overflow-hidden rounded-lg">
             <img
               src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace"
@@ -469,7 +463,6 @@ duration-300
             </div>
           </div>
 
-          {/* PROJECT 6 */}
           <div className="group relative overflow-hidden rounded-lg">
             <img
               src="https://images.unsplash.com/photo-1552566626-52f8b828add9"

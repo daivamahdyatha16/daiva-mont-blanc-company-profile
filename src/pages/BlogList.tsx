@@ -32,7 +32,6 @@ const BlogList = () => {
   return (
     <div className="min-h-screen bg-[#0F1921] text-white pt-32 px-6">
       <div className="max-w-7xl mx-auto">
-        {/* HEADER */}
 
         <div className="mb-12">
           <p className="text-[#D1C19E] tracking-[6px] mb-3">
@@ -73,7 +72,6 @@ const BlogList = () => {
           </div>
         </div>
 
-        {/* EMPTY */}
 
         {filteredBlogs.length === 0 ? (
           <div className="text-center py-20">
@@ -102,7 +100,6 @@ const BlogList = () => {
                   duration-300
                 "
               >
-                {/* IMAGE */}
 
                 <img
                   src={blog.image}
@@ -118,7 +115,6 @@ const BlogList = () => {
                 />
 
                 <div className="p-6">
-                  {/* DATE */}
 
                   <p className="text-[#D1C19E] text-sm mb-2">
                     {blog.createdAt
@@ -128,25 +124,21 @@ const BlogList = () => {
                       : "-"}
                   </p>
 
-                  {/* TITLE */}
 
                   <h2 className="text-2xl font-bold mb-4">
                     {blog.title}
                   </h2>
 
-                  {/* CONTENT */}
 
                   <p className="text-[#A7ADB3] mb-6">
                     {blog.content.slice(0, 100)}...
                   </p>
 
-                  {/* AUTHOR */}
 
                   <p className="text-zinc-500 mb-6">
                     By {blog.author}
                   </p>
 
-                  {/* BUTTONS */}
 
                   <div className="flex gap-3 flex-wrap">
                     <Link

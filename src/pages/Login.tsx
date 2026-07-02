@@ -71,7 +71,6 @@ const Login = () => {
         backgroundPosition: "center",
       }}
     >
-      {/* POPUP */}
 
       {popup && (
         <div
@@ -113,7 +112,6 @@ const Login = () => {
           shadow-2xl
         "
       >
-        {/* HEADER */}
 
         <div className="text-center mb-8">
           <p className="text-[#D1C19E] tracking-[8px] text-sm">
@@ -127,7 +125,6 @@ const Login = () => {
           <div className="w-16 h-[2px] bg-[#D1C19E] mx-auto mt-4"></div>
         </div>
 
-        {/* EMAIL */}
 
         <div className="mb-5">
           <input
@@ -158,7 +155,6 @@ const Login = () => {
             )}
         </div>
 
-        {/* PASSWORD */}
 
         <div className="mb-5">
           <input
@@ -195,7 +191,6 @@ const Login = () => {
           </span>
         </div>
 
-        {/* BUTTON */}
 
         <button
           type="submit"

@@ -113,7 +113,7 @@ const Register = () => {
           shadow-2xl
         "
       >
-        {/* HEADER */}
+
 
         <div className="text-center mb-8">
           <p className="text-[#D1C19E] tracking-[8px] text-sm">
@@ -127,7 +127,6 @@ const Register = () => {
           <div className="w-16 h-[2px] bg-[#D1C19E] mx-auto mt-4"></div>
         </div>
 
-        {/* NAME */}
 
         <div className="mb-5">
           <input
@@ -155,7 +154,6 @@ const Register = () => {
           )}
         </div>
 
-        {/* EMAIL */}
 
         <div className="mb-5">
           <input
@@ -183,7 +181,6 @@ const Register = () => {
           )}
         </div>
 
-        {/* PASSWORD */}
 
         <div className="mb-6">
           <input
@@ -213,7 +210,6 @@ const Register = () => {
           )}
         </div>
 
-        {/* BUTTON */}
 
         <button
           type="submit"

@@ -41,7 +41,7 @@ const Teams = () => {
   return (
     <div className="min-h-screen bg-[#0F1921] text-white pt-32 pb-24 px-6">
       <div className="max-w-7xl mx-auto">
-        {/* HEADER */}
+
         <p className="text-[#D1C19E] tracking-[6px] mb-4">OUR TEAM</p>
 
         <h1 className="text-5xl md:text-7xl font-bold mb-8">
@@ -54,7 +54,6 @@ const Teams = () => {
           creating timeless luxury spaces.
         </p>
 
-        {/* TEAM GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teams.map((member) => (
             <div
@@ -72,7 +71,6 @@ const Teams = () => {
     duration-300
   "
             >
-              {/* PHOTO */}
               <div className="aspect-[3/4] overflow-hidden">
                 <img
                   src={member.img}
@@ -89,7 +87,6 @@ const Teams = () => {
                 />
               </div>
 
-              {/* CONTENT */}
               <div className="p-8">
                 <h2 className="text-2xl font-bold mb-2">{member.name}</h2>
 

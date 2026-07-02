@@ -7,7 +7,6 @@ const About = () => {
   return (
     <div className="min-h-screen bg-[#0F1921] text-white pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6">
-        {/* HEADER */}
 
         <p className="text-[#D1C19E] tracking-[6px] mb-4">
           ABOUT US
@@ -31,7 +30,6 @@ const About = () => {
           each client's vision and lifestyle.
         </p>
 
-        {/* HERO IMAGE */}
 
         <div className="my-20 overflow-hidden rounded-3xl">
           <img
@@ -48,7 +46,6 @@ const About = () => {
           />
         </div>
 
-        {/* STATISTICS */}
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div
@@ -140,7 +137,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* EXPERTISE */}
 
         <div className="mt-24">
           <p className="text-[#D1C19E] tracking-[6px] mb-4">
@@ -224,7 +220,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* CTA */}
 
         <div className="mt-24 text-center">
           <button

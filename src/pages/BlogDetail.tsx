@@ -24,7 +24,6 @@ const BlogDetail = () => {
     <div className="min-h-screen bg-[#0F1921] text-white pt-32 px-6">
       <div className="max-w-5xl mx-auto">
 
-        {/* BACK */}
         <Link
           to="/blogs"
           className="
@@ -38,7 +37,6 @@ const BlogDetail = () => {
           ← Back to Articles
         </Link>
 
-        {/* IMAGE */}
         <img
           src={blog.image}
           onError={(e) => {
@@ -54,7 +52,6 @@ const BlogDetail = () => {
           "
         />
 
-        {/* DATE */}
         <p
           className="
             text-[#D1C19E]
@@ -66,7 +63,6 @@ const BlogDetail = () => {
           {blog.createdAt}
         </p>
 
-        {/* TITLE */}
         <h1
           className="
             text-5xl
@@ -77,7 +73,6 @@ const BlogDetail = () => {
           {blog.title}
         </h1>
 
-        {/* AUTHOR */}
         <p
           className="
             text-zinc-500
@@ -87,7 +82,6 @@ const BlogDetail = () => {
           By {blog.author}
         </p>
 
-        {/* CONTENT */}
         <div
           className="
             text-lg

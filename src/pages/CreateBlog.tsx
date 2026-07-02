@@ -69,7 +69,6 @@ const CreateBlog = () => {
   return (
     <div className="min-h-screen bg-[#0F1921] text-white pt-32 px-6">
       <div className="max-w-4xl mx-auto">
-        {/* HEADER */}
         {popup && (
           <div
             className="
@@ -102,7 +101,6 @@ const CreateBlog = () => {
           </p>
         </div>
 
-        {/* FORM */}
 
         <form
           onSubmit={formik.handleSubmit}
@@ -115,7 +113,6 @@ const CreateBlog = () => {
             space-y-6
           "
         >
-          {/* TITLE */}
 
           <div>
             <label className="block mb-3">Article Title</label>
@@ -143,7 +140,6 @@ const CreateBlog = () => {
             )}
           </div>
 
-          {/* IMAGE */}
 
           <div>
             <label className="block mb-3">Image URL</label>
@@ -172,7 +168,6 @@ const CreateBlog = () => {
             )}
           </div>
 
-          {/* PREVIEW */}
 
           {formik.values.image && (
             <img
@@ -189,7 +184,6 @@ const CreateBlog = () => {
             />
           )}
 
-          {/* CONTENT */}
 
           <div>
             <label className="block mb-3">Article Content</label>
@@ -219,7 +213,6 @@ const CreateBlog = () => {
             )}
           </div>
 
-          {/* BUTTON */}
 
           <button
             type="submit"

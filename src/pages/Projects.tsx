@@ -20,7 +20,6 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-[#0F1921] text-white pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6">
-        {/* HEADER */}
 
         <p className="text-[#D1C19E] tracking-[6px] mb-4">
           OUR PORTFOLIO
@@ -36,7 +35,6 @@ const Projects = () => {
           create timeless and meaningful spaces.
         </p>
 
-        {/* PROJECT GRID */}
 
         <div
           className="
@@ -49,7 +47,6 @@ const Projects = () => {
             gap-6
           "
         >
-          {/* PROJECT 1 */}
 
           <div className="group relative overflow-hidden rounded-2xl">
             <img
@@ -90,7 +87,6 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* PROJECT 2 */}
 
           <div className="group relative overflow-hidden rounded-2xl">
             <img
@@ -131,7 +127,6 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* PROJECT 3 */}
 
           <div className="group relative overflow-hidden rounded-2xl">
             <img
@@ -172,7 +167,6 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* PROJECT 4 */}
 
           <div className="group relative overflow-hidden rounded-2xl">
             <img
@@ -213,7 +207,6 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* PROJECT 5 */}
 
           <div className="group relative overflow-hidden rounded-2xl">
             <img
@@ -254,7 +247,6 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* PROJECT 6 */}
 
           <div className="group relative overflow-hidden rounded-2xl">
             <img

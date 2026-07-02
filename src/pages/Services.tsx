@@ -44,7 +44,7 @@ const Services = () => {
     <div className="min-h-screen bg-[#0F1921] text-white pt-32 pb-24 px-6">
       <div className="max-w-7xl mx-auto">
 
-        {/* HEADER */}
+
 
         <p className="text-[#D1C19E] tracking-[6px] mb-4">
           OUR SERVICES
@@ -60,7 +60,6 @@ const Services = () => {
           that combine luxury, comfort, and functionality.
         </p>
 
-        {/* SERVICES */}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
@@ -95,7 +94,6 @@ const Services = () => {
 
         </div>
 
-        {/* PROCESS */}
 
         <div className="mt-32">
 
@@ -136,7 +134,6 @@ const Services = () => {
           </div>
         </div>
 
-        {/* CTA */}
 
         <div className="mt-32 text-center">
 

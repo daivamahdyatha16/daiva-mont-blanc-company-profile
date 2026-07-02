@@ -39,12 +39,9 @@ const Navbar = () => {
   `}
     >
       <div className="w-full px-6">
-        {/* DESKTOP HEADER */}
 
         <div className="flex justify-between items-center h-20 w-full">
-          {/* LOGO */}
 
-          {/* LOGO */}
           <Link
             to="/"
             className="
@@ -71,8 +68,6 @@ const Navbar = () => {
     "
             />
           </Link>
-
-          {/* DESKTOP MENU */}
 
           <div
             className="
@@ -114,7 +109,6 @@ const Navbar = () => {
                   Write Article
                 </NavLink>
 
-                {/* separator */}
                 <div className="h-6 w-px bg-white/20 mx-2" />
 
                 <span className="text-[#A7ADB3] whitespace-nowrap">
@@ -173,7 +167,6 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* MOBILE BUTTON */}
 
           <button
             className="
@@ -193,7 +186,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* MOBILE MENU */}
 
         {open && (
           <div
