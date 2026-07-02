@@ -1,8 +1,13 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import Backendless from "../lib/backendless";
 
-type User = {
+export type User = {
   name: string;
   email: string;
 };
@@ -10,23 +15,39 @@ type User = {
 type AuthContextType = {
   currentUser: User | null;
 
-  register: (name: string, email: string, password: string) => Promise<boolean>;
+  register: (
+    name: string,
+    email: string,
+    password: string,
+  ) => Promise<boolean>;
 
-  login: (email: string, password: string) => Promise<boolean>;
+  login: (
+    email: string,
+    password: string,
+  ) => Promise<User | false>;
 
   logout: () => Promise<void>;
 };
 
-const AuthContext = createContext<AuthContextType>({} as AuthContextType);
+const AuthContext =
+  createContext<AuthContextType>(
+    {} as AuthContextType,
+  );
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+export const AuthProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [currentUser, setCurrentUser] =
+    useState<User | null>(null);
 
-  // cek login ketika refresh
+  // cek login saat refresh
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const user = (await Backendless.UserService.getCurrentUser()) as any;
+        const user =
+          (await Backendless.UserService.getCurrentUser()) as any;
 
         if (user) {
           setCurrentUser({
@@ -43,15 +64,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   // REGISTER
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (
+    name: string,
+    email: string,
+    password: string,
+  ) => {
     try {
-      const user = new Backendless.User() as any;
+      const user =
+        new Backendless.User() as any;
 
       user.name = name;
       user.email = email;
       user.password = password;
 
-      await Backendless.UserService.register(user);
+      await Backendless.UserService.register(
+        user,
+      );
 
       return true;
     } catch (err) {
@@ -61,19 +89,26 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   // LOGIN
-  const login = async (email: string, password: string) => {
+  const login = async (
+    email: string,
+    password: string,
+  ): Promise<User | false> => {
     try {
-      const user = (await Backendless.UserService.login(
-        email,
-        password,
-        true,
-      )) as any;
+      const user =
+        (await Backendless.UserService.login(
+          email,
+          password,
+          true,
+        )) as any;
 
-      setCurrentUser({
+      const loggedUser = {
         name: user.name ?? "",
         email: user.email ?? "",
-      });
-      return true;
+      };
+
+      setCurrentUser(loggedUser);
+
+      return loggedUser;
     } catch (err) {
       console.error(err);
       return false;
@@ -82,9 +117,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   // LOGOUT
   const logout = async () => {
-    await Backendless.UserService.logout();
+    try {
+      await Backendless.UserService.logout();
 
-    setCurrentUser(null);
+      setCurrentUser(null);
+
+      alert("Logged out successfully!");
+
+      window.location.href = "/";
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -101,4 +144,5 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () =>
+  useContext(AuthContext);

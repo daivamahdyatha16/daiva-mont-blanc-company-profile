@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useBlog } from "../context/BlogContext";
-
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -8,7 +8,7 @@ const EditBlog = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
-
+  const [popup, setPopup] = useState("");
   const { blogs, editBlog } = useBlog();
 
   const blog = blogs.find(
@@ -58,12 +58,19 @@ const EditBlog = () => {
           content: values.content,
         });
 
-        alert("Article updated successfully");
+        setPopup(
+          `Article "${values.title}" updated successfully!`
+        );
 
-        navigate("/blogs");
+        setTimeout(() => {
+          navigate("/blogs");
+        }, 1500);
       } catch (err) {
         console.error(err);
-        alert("Failed to update article");
+
+        setPopup(
+          "Failed to update article."
+        );
       }
     },
   });
@@ -71,7 +78,27 @@ const EditBlog = () => {
   return (
     <div className="min-h-screen bg-[#0F1921] text-white pt-32 px-6">
       <div className="max-w-4xl mx-auto">
-
+        {popup && (
+          <div
+            className="
+      fixed
+      top-8
+      left-1/2
+      -translate-x-1/2
+      z-50
+      bg-[#D1C19E]
+      text-[#0F1921]
+      px-8
+      py-4
+      rounded-xl
+      shadow-2xl
+      font-semibold
+      animate-pulse
+    "
+          >
+            {popup}
+          </div>
+        )}
         <p className="text-[#D1C19E] tracking-[6px] mb-3">
           EDIT ARTICLE
         </p>

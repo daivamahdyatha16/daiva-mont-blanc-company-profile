@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
 
   const navigate = useNavigate();
+
+  const [popup, setPopup] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -28,12 +30,26 @@ const Login = () => {
     }),
 
     onSubmit: async (values) => {
-      const success = await login(values.email, values.password);
+      const success = await login(
+        values.email,
+        values.password,
+      );
 
       if (success) {
-        navigate("/");
+        setPopup(
+          `Welcome back, ${
+            currentUser?.name ??
+            values.email.split("@")[0]
+          }!`
+        );
+
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       } else {
-        alert("Login failed");
+        alert(
+          "Login failed. Please check your email and password."
+        );
       }
     },
   });
@@ -55,6 +71,30 @@ const Login = () => {
         backgroundPosition: "center",
       }}
     >
+      {/* POPUP */}
+
+      {popup && (
+        <div
+          className="
+            fixed
+            top-8
+            left-1/2
+            -translate-x-1/2
+            z-50
+            bg-[#D1C19E]
+            text-[#0F1921]
+            px-8
+            py-4
+            rounded-xl
+            shadow-2xl
+            font-semibold
+            animate-pulse
+          "
+        >
+          {popup}
+        </div>
+      )}
+
       <div className="absolute inset-0 bg-[#0F1921]/80"></div>
 
       <form
@@ -76,7 +116,9 @@ const Login = () => {
         {/* HEADER */}
 
         <div className="text-center mb-8">
-          <p className="text-[#D1C19E] tracking-[8px] text-sm">WELCOME BACK</p>
+          <p className="text-[#D1C19E] tracking-[8px] text-sm">
+            WELCOME BACK
+          </p>
 
           <h1 className="text-6xl font-bold text-white mt-4 font-serif">
             Login
@@ -108,9 +150,12 @@ const Login = () => {
             "
           />
 
-          {formik.touched.email && formik.errors.email && (
-            <p className="text-red-500 text-sm mt-2">{formik.errors.email}</p>
-          )}
+          {formik.touched.email &&
+            formik.errors.email && (
+              <p className="text-red-500 text-sm mt-2">
+                {formik.errors.email}
+              </p>
+            )}
         </div>
 
         {/* PASSWORD */}
@@ -136,11 +181,12 @@ const Login = () => {
             "
           />
 
-          {formik.touched.password && formik.errors.password && (
-            <p className="text-red-500 text-sm mt-2">
-              {formik.errors.password}
-            </p>
-          )}
+          {formik.touched.password &&
+            formik.errors.password && (
+              <p className="text-red-500 text-sm mt-2">
+                {formik.errors.password}
+              </p>
+            )}
         </div>
 
         <div className="text-right mb-6">
@@ -174,7 +220,9 @@ const Login = () => {
         <p className="text-center mt-8 text-[#A7ADB3]">
           Don't have account?{" "}
           <span
-            onClick={() => navigate("/register")}
+            onClick={() =>
+              navigate("/register")
+            }
             className="
               text-[#D1C19E]
               cursor-pointer

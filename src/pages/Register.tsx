@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -8,6 +8,7 @@ const Register = () => {
   const { register } = useAuth();
 
   const navigate = useNavigate();
+  const [popup, setPopup] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -41,9 +42,17 @@ const Register = () => {
       );
 
       if (success) {
-        navigate("/login");
+        setPopup(
+          `Account for ${values.name} created successfully!`
+        );
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
       } else {
-        alert("Register failed");
+        setPopup(
+          "Registration failed. Please check your data and try again."
+        );
       }
     },
   });
@@ -65,6 +74,27 @@ const Register = () => {
         backgroundPosition: "center",
       }}
     >
+      {popup && (
+        <div
+          className="
+      fixed
+      top-8
+      left-1/2
+      -translate-x-1/2
+      z-50
+      bg-[#D1C19E]
+      text-[#0F1921]
+      px-8
+      py-4
+      rounded-xl
+      shadow-2xl
+      font-semibold
+      animate-pulse
+    "
+        >
+          {popup}
+        </div>
+      )}
       <div className="absolute inset-0 bg-[#0F1921]/80"></div>
 
       <form
